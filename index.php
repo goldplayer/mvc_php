@@ -10,3 +10,7 @@ require_once 'app/controllers/users/AuthController.php';
 require_once 'app/controllers/users/UserController.php';
 
 
+$router = new Router();
+$router->run();
+
+

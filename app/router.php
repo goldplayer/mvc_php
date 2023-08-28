@@ -7,9 +7,13 @@ class Router {
         switch ($page){
 
             case 'users':
-
-
-
+                $controller = new UserController();
+                $controller->index();
+                break;
+            default:
+                http_response_code(404);
+                echo 'page not found - sorry';
+                break;
         }
 
     }
