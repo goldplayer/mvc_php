@@ -10,12 +10,22 @@ $('#add').on('submit', function (e) {
         url: 'function.php',
         data: data,
         success: function(response) {
-            console.log('Success:', response);
-            $('#add')[0].reset(); // Сброс формы
-            $('#successModal').modal('show'); // Показать модальное окно
+            var result = JSON.parse(response); // Предполагаем, что ответ приходит в формате JSON
+            if (result.status === "Ok!") {
+                $('#add')[0].reset(); // Сброс формы
+                
+                // Установка имени пользователя в модальное окно и его отображение
+                $("#newUserName").text(result.name);
+                $('#successModal').modal('show');
+            }
         },
         error: function(error) {
             console.log('Error:', error);
         }
     });
+});
+
+// Перенаправление при закрытии модального окна
+$('#successModal').on('hidden.bs.modal', function () {
+    window.location.href = 'index.php';
 });
