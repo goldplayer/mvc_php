@@ -2,6 +2,7 @@
 <html lang="ru" data-theme="light">
 
 <?php  include_once __DIR__ . '/components/head.php' ?>
+
 <body>
 
 <form class="card" action="src/actions/login.php" method="post">

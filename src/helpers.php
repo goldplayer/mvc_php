@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+require_once 'config.php';
 function redirect($path){
     header("Location: $path");
     die();
@@ -50,14 +51,20 @@ function uploadFile(array $file, $prefix): string{
 
     $fileName = $prefix . '_' . time() . ".$ext";
 
-    $path = "$img_path/$fileName";
-    if(!move_uploaded_file($file['tmp_name'], $path )){
+
+    if(!move_uploaded_file($file['tmp_name'], "$img_path/$fileName" )){
         die('Error downloading');
     }
 
-    return $path;
+    return "uploads/$fileName";
 }
 
-// function clearOldValue(): void{
-//     $_SESSION['old']=[];
-// }
+function getPDO(): PDO{
+
+    try {
+        return new \PDO('mysql:host='. DB_HOST .';dbname='.DB_NAME, DB_USERNAME, DB_PASSWORD);
+    } catch(\PDOException $e){
+        die($e->getMessage());
+    }
+
+}

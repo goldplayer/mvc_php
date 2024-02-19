@@ -26,11 +26,11 @@ if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
     addValidationError('email', 'Incorrect Email');
 }
 
-if(!empty($password)){
+if(empty($password)){
     addValidationError('password', 'Empty Password');
 }
 
-if($password === $passwordConfirmation){
+if($password !== $passwordConfirmation){
     addValidationError('password', 'Password is not ');
 }
 
@@ -50,7 +50,22 @@ if(!empty($avatar)){
     $avatar_Path = uploadFile($avatar, 'avatar');
 }
 
-var_dump($avatar_Path);
+$pdo = getPDO();
+
+$query = "INSERT INTO users(name, email, avatar, password) VALUES(:name, :email, :avatar, :password)";
+$params =[
+    'name'=>$name,
+    'email'=>$email,
+    'avatar'=>$avatar_Path,
+    'password'=>password_hash($password, PASSWORD_BCRYPT)
+];
+
+$stmt = $pdo->prepare($query);
+    try{
+        $stmt->execute($params);
+    }catch(\PDOException $e){
+        die($e->getMessage());
+    }
 
 // if(!empty($_SESSION['validation'])){
 //     redirect('/mvc_php/register.php');
