@@ -33,7 +33,7 @@
     >Продолжить</button>
 </form>
 
-<p>У меня еще нет <a href="/register.php">аккаунта</a></p>
+<p>У меня еще нет <a href="register.php">аккаунта</a></p>
 
 <?php include_once __DIR__ . "/components/scripts.php"?>
 </body>

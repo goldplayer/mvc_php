@@ -87,7 +87,7 @@
     >Продолжить</button>
 </form>
 
-<p>У меня уже есть <a href="/">аккаунт</a></p>
+<p>У меня уже есть <a href="index.php">аккаунт</a></p>
 
 <?php include_once __DIR__ . "/components/scripts.php"?>
 </body>
