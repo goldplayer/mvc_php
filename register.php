@@ -5,7 +5,8 @@
 
 <?php  include_once __DIR__ . '/components/head.php' ?>
 <?php  include_once __DIR__ . '/src/helpers.php' ?>
-<?php session_start(); $_SESSION['validation']=[]; ?>
+
+
 
 <body>
 
@@ -19,12 +20,13 @@
             id="name"
             name="name"
             placeholder="Admin admin"
+            value="<?php echo old('name'); ?>"
             <?php validationErrorAttr('name'); ?>
 
         >
-        <?php if(hasValiddationError('name')) : ?>
+        <?php if(hasValidationError('name')) : ?>
 
-        <smal><?php validationErrorMessage('name'); ?></smal>
+        <small><?php validationErrorMessage('name'); ?></small>
 
         <?php endif; ?>
     </label>
@@ -36,7 +38,14 @@
             id="email"
             name="email"
             placeholder="admin@admin.com"
+            value="<?php echo old('email'); ?>"
+            <?php validationErrorAttr('email'); ?>
         >
+        <?php if(hasValidationError('email')) : ?>
+
+            <small><?php validationErrorMessage('email'); ?></small>
+
+        <?php endif; ?>
     </label>
 
     <label for="avatar">Изображение профиля
@@ -44,7 +53,13 @@
             type="file"
             id="avatar"
             name="avatar"
+            <?php validationErrorAttr('avatar'); ?>
         >
+        <?php if(hasValidationError('avatar')) : ?>
+
+            <small><?php validationErrorMessage('avatar'); ?></small>
+
+        <?php endif; ?>
     </label>
 
     <div class="grid">
@@ -55,7 +70,13 @@
                 id="password"
                 name="password"
                 placeholder="******"
+                <?php validationErrorAttr('password'); ?>
             >
+            <?php if(hasValidationError('password')) : ?>
+
+               <small><?php validationErrorMessage('password'); ?></small>
+
+            <?php endif; ?>
         </label>
 
         <label for="password_confirmation">
