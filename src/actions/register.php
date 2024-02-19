@@ -67,6 +67,7 @@ $stmt = $pdo->prepare($query);
         die($e->getMessage());
     }
 
+    redirect('mvc_php/index.php');
 // if(!empty($_SESSION['validation'])){
 //     redirect('/mvc_php/register.php');
 // }
