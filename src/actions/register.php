@@ -50,6 +50,10 @@ if(!empty($avatar)){
     $avatar_Path = uploadFile($avatar, 'avatar');
 }
 
+if(!empty($_SESSION['validation'])){
+    redirect('/mvc_php/register.php');
+}
+
 $pdo = getPDO();
 
 $query = "INSERT INTO users(name, email, avatar, password) VALUES(:name, :email, :avatar, :password)";
@@ -67,10 +71,8 @@ $stmt = $pdo->prepare($query);
         die($e->getMessage());
     }
 
-    redirect('mvc_php/index.php');
-// if(!empty($_SESSION['validation'])){
-//     redirect('/mvc_php/register.php');
-// }
+    redirect('index.php');
+
 
 
 

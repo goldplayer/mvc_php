@@ -34,7 +34,7 @@
     <label for="email">
         E-mail
         <input
-            type="text"
+            type="email"
             id="email"
             name="email"
             placeholder="admin@admin.com"
