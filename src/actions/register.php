@@ -71,7 +71,7 @@ $stmt = $pdo->prepare($query);
         die($e->getMessage());
     }
 
-    redirect('index.php');
+redirect('index.php');
 
 
 

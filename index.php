@@ -2,11 +2,19 @@
 <html lang="ru" data-theme="light">
 
 <?php  include_once __DIR__ . '/components/head.php' ?>
-
+<?php  include_once __DIR__ . '/src/helpers.php' ?>
 <body>
 
 <form class="card" action="src/actions/login.php" method="post">
     <h2>Вход</h2>
+
+    <?php if(hasMsg('error')): ?>
+
+    <div class="notice error">
+        <?php echo getMsg('error') ?>
+    </div>
+
+    <?php endif; ?>
 
     <label for="email">
         Имя
@@ -15,7 +23,14 @@
                 id="email"
                 name="email"
                 placeholder="ivan@areaweb.su"
+                value="<?php echo old('name'); ?>"
+             <?php validationErrorAttr('email'); ?>
         >
+        <?php if(hasValidationError('email')) : ?>
+
+            <small><?php validationErrorMessage('email'); ?></small>
+
+        <?php endif; ?>
     </label>
 
     <label for="password">

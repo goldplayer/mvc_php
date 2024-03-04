@@ -59,6 +59,22 @@ function uploadFile(array $file, $prefix): string{
     return "uploads/$fileName";
 }
 
+
+function setMsg($key, $msg){
+    $_SESSION['msg'][$key]=$msg;
+}
+
+function hasMsg($key):bool{
+    return isset($_SESSION['message'][$key]);
+}
+
+function getMsg($key){
+    $msg=$_SESSION['msg'][$key] ?? '';
+    unset($_SESSION['msg'][$key]);
+    return $msg;
+
+}
+
 function getPDO(): PDO{
 
     try {
